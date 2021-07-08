@@ -8,6 +8,8 @@ app = Flask(__name__)
 con = sqlite3.connect('database.db', check_same_thread=False)
 cur = con.cursor()
 #cur.execute('''CREATE TABLE Sum(num1 real, num2 real, sum real)''')
+#cur.execute('''DROP TABLE Accounts''')
+#cur.execute('''CREATE TABLE Accounts(username text, password text, email text)''')
 
 @app.route('/')
 
@@ -24,7 +26,7 @@ def gfg():
         data = cur.fetchall()
         data_str = str(data[0])
         return data_str[1:-2] + ":" + str(sum)
-    return render_template("login.html")
+    return render_template("Main.html")
 
 
 @app.route('/login', methods =['GET', 'POST'])
@@ -42,8 +44,10 @@ def register():
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
-        msg += "Hello "
-        msg += username
+        execute = "insert into Accounts (username, password, email) values('{u1}','{p1}','{e1}')".format(u1 = username, p1 = password, e1 = email)
+        cur.execute(execute)
+        con.commit()
+        msg += "Hello " + username + '\n' + "Please log in."
         return render_template('login.html', msg = msg)
     return render_template('register.html', msg = msg)
 
