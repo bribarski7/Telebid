@@ -1,8 +1,20 @@
-
-<form action="{{ url_for('gfg')}}" method="post">
-<label for="firstnumber">First Number:</label>
-<input type="number" id="firstnumber" name="fn" placeholder="firstnumber">
-<label for="secondnumber">Second Number:</label>
-<input type="number" id="secondnumber" name="sn" placeholder="secondnumber">
-<button type="submit">Sum</button>
-</form>>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Main </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">                     
+    </head>
+    <body></br></br></br></br></br>
+        <div align="center">
+          <div align="center" class="border">
+             <div class="header">
+                <h1 class="word">Index</h1>
+             </div></br></br></br>
+                <h1 class="bottom">
+                     Hi {{msg}}!!!</br></br> Welcome to the main page...
+                </h1></br></br></br>
+                <a href="{{ url_for('login') }}" class="btn">Logout</a>
+          </div>
+        </div>
+    </body>
+</html>
